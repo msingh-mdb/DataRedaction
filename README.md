@@ -82,3 +82,91 @@ The server will start on port 5000. Open your web browser or use a REST client a
 * **P1 (Standard User)**: http://127.0.0.1:5000/data/P1 (Expect sensitive fields like financial_data to be entirely missing.)
 * **P2 (Analyst)**: http://127.00.1:5000/data/P2 (Expect to see financial figures, but highly sensitive fields like internal_code will be removed/redacted.)
 * **P3 (Administrator)**: http://127.0.0.1:5000/data/P3 (Expect to see the complete, unredacted JSON for all 10 documents.)
+
+### Sample test Document
+``` {
+    "_id": 1,
+    "title": "Q3 Sales Report",
+    "access_roles": ["P1", "P2", "P3"], // P1 can see the title
+    "status": "Final",
+    "year": 2025,
+    "general_summary": "Sales exceeded targets by 5%.",
+    "financial_data": {
+      "access_roles": ["P2", "P3"], // Only P2/P3 can view this section
+      "gross_revenue": 1500000,
+      "net_profit": 450000,
+      "internal_code": {
+        "access_roles": ["P3"], // Only P3 can view this
+        "secret": "S-12345"
+      }
+    }
+  }
+```
+## Output for P1 would be:
+```
+{
+      "_id": 1,
+      "access_roles": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "general_summary": "Sales exceeded targets by 5%.",
+      "status": "Final",
+      "title": "Q3 Sales Report",
+      "year": 2025
+}
+```
+## Output for P2 would be:
+```
+{
+      "_id": 1,
+      "access_roles": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "financial_data": {
+        "access_roles": [
+          "P2",
+          "P3"
+        ],
+        "gross_revenue": 1500000,
+        "net_profit": 450000
+      },
+      "general_summary": "Sales exceeded targets by 5%.",
+      "status": "Final",
+      "title": "Q3 Sales Report",
+      "year": 2025
+}
+```
+
+## Output for P3 would be:
+```
+{
+      "_id": 1,
+      "access_roles": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "financial_data": {
+        "access_roles": [
+          "P2",
+          "P3"
+        ],
+        "gross_revenue": 1500000,
+        "internal_code": {
+          "access_roles": [
+            "P3"
+          ],
+          "secret": "S-12345"
+        },
+        "net_profit": 450000
+      },
+      "general_summary": "Sales exceeded targets by 5%.",
+      "status": "Final",
+      "title": "Q3 Sales Report",
+      "year": 2025
+}
+```
