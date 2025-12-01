@@ -25,6 +25,7 @@ The project uses three distinct personas to simulate different organizational ro
 
 * Python 3.x
 * MongoDB
+* Import Data into collection using data.json 
 
 ### Python Dependencies
 
@@ -42,6 +43,30 @@ MONGO_URI = 'mongodb+srv://user:password@mydbmongodb.net/'
 DATABASE_NAME = "DataRedaction"
 COLLECTION_NAME = "EmployeeData"
 ```
+
+## 🔎 The Core Logic: The $redact Pipeline
+Data redaction happens in the single ```$redact``` stage within the MongoDB aggregation pipeline.
+
+The pipeline dynamically constructs an access check based on the user ID passed from the backend:
+``` // Example used in app.py (where [persona_id] is 'P1', 'P2', etc.)
+[
+  {
+    "$redact": {
+      "$cond": {
+        // CONDITION: Does the user's ID exist in the document's 'access_roles' array?
+        "if": { "$in": [ "[persona_id]", "$access_roles" ] },
+        
+        // THEN: Keep the current level, but continue checking lower levels (sub-documents/arrays)
+        "then": "$$DESCEND", 
+        
+        // ELSE: Prune (remove) this field/sub-document and stop checking its contents
+        "else": "$$PRUNE"
+      }
+    }
+  }
+]
+```
+
 ## 🖥️ Execute and Test the Demo
 Run the application and test the different persona views to observe the redaction effect.
 
