@@ -67,7 +67,7 @@ The pipeline dynamically constructs an access check based on the persona ID pass
 ]
 ```
 
-## 🖥️ Execute and Test the Demo
+## 🖥️ Execute and Test
 Run the application and test the different persona views to observe the redaction effect.
 
 ### Run the App
