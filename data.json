@@ -1,0 +1,131 @@
+[
+  {
+    "_id": 1,
+    "title": "Q3 Sales Report",
+    "access_roles": ["P1", "P2", "P3"],
+    "status": "Final",
+    "year": 2025,
+    "general_summary": "Sales exceeded targets by 5%.",
+    "financial_data": {
+      "access_roles": ["P2", "P3"], 
+      "gross_revenue": 1500000,
+      "net_profit": 450000,
+      "internal_code": {
+        "access_roles": ["P3"], 
+        "secret": "S-12345"
+      }
+    }
+  },
+ {
+    "_id": 2,
+    "title": "Client Onboarding Log",
+    "access_roles": ["P2", "P3"],
+    "client_name": "Acme Corp",
+    "onboarding_date": "2025-10-01",
+    "contact_info": {
+      "access_roles": ["P3"], 
+      "email": "acme@example.com",
+      "phone": "555-1234"
+    }
+  },
+ {
+    "_id": 3,
+    "title": "Training Records",
+    "access_roles": ["P1", "P2", "P3"],
+    "modules_completed": [
+      {
+        "name": "Safety Fundamentals",
+        "access_roles": ["P1", "P2", "P3"]
+      },
+      {
+        "name": "Advanced Security Protocol",
+        "access_roles": ["P2", "P3"] 
+      }
+    ]
+  },
+ {
+    "_id": 4,
+    "title": "Executive Planning Memo",
+    "access_roles": ["P2", "P3"],
+    "author": "CEO",
+    "confidential_notes": {
+      "access_roles": ["P3"],
+      "next_year_strategy": "Major expansion into Asia."
+    }
+  },
+ {
+    "_id": 5,
+    "title": "Company Holiday List",
+    "access_roles": ["P1", "P2", "P3"],
+    "dates": ["2025-12-25", "2026-01-01"]
+  },
+  {
+    "_id": 6,
+    "title": "Hardware Inventory",
+    "access_roles": ["P1", "P2", "P3"],
+    "asset_tag": "HW-901",
+    "purchase_info": {
+      "access_roles": ["P2", "P3"],
+      "vendor": "TechSupply Co."
+    },
+    "disposal_details": {
+      "access_roles": ["P3"],
+      "date": "2026-05-01"
+    }
+  },
+  {
+    "_id": 7,
+    "title": "Budget Proposal 2026",
+    "access_roles": ["P2", "P3"],
+    "project_name": "Phoenix",
+    "total_budget": 1000000
+  },
+  {
+    "_id": 8,
+    "title": "Server Log Snippets",
+    "access_roles": ["P2", "P3"],
+    "logs": [
+      {
+        "timestamp": "2025-11-30T10:00:00Z",
+        "message": "System check OK.",
+        "access_roles": ["P2", "P3"]
+      },
+      {
+        "timestamp": "2025-11-30T10:05:00Z",
+        "message": "Authentication failure from IP 192.168.1.10.",
+        "access_roles": ["P3"] 
+      }
+    ]
+  },
+  {
+    "_id": 9,
+    "title": "User Database Query",
+    "access_roles": ["P1", "P2", "P3"],
+    "data_source": "production_db",
+    "query_details": {
+      "access_roles": ["P2", "P3"],
+      "user_id": 456
+    },
+    "sensitive_data": {
+      "access_roles": ["P3"],
+      "full_query_string": "SELECT * FROM users WHERE status='active'"
+    }
+  },
+  {
+    "_id": 10,
+    "title": "Expense Report Summary",
+    "access_roles": ["P1", "P2", "P3"],
+    "expenses": [
+      {
+        "item": "Flight to NYC",
+        "amount": 450,
+        "access_roles": ["P2", "P3"] 
+      },
+      {
+        "item": "Lunch with client",
+        "amount": 75,
+        "access_roles": ["P1", "P2", "P3"] 
+      }
+    ]
+  }
+]
