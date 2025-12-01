@@ -32,7 +32,7 @@ def get_redacted_data(persona_id):
         {
             "$redact": {
                 "$cond": {
-                    # Check if the user's ID is present in the current level's access_roles
+                    # Check if the user's persona ID is present in the current level's access_roles
                     "if": { "$in": [ persona_id, "$access_roles" ] },
                     
                     # If true: Keep this level and check sub-levels
