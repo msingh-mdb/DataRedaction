@@ -47,13 +47,13 @@ COLLECTION_NAME = "EmployeeData"
 ## 🔎 The Core Logic: The $redact Pipeline
 Data redaction happens in the single ```$redact``` stage within the MongoDB aggregation pipeline.
 
-The pipeline dynamically constructs an access check based on the user ID passed from the backend:
+The pipeline dynamically constructs an access check based on the persona ID passed from the backend:
 ``` // Example used in app.py (where [persona_id] is 'P1', 'P2', etc.)
 [
   {
     "$redact": {
       "$cond": {
-        // CONDITION: Does the user's ID exist in the document's 'access_roles' array?
+        // CONDITION: Does the persona ID exist in the document's 'access_roles' array?
         "if": { "$in": [ "[persona_id]", "$access_roles" ] },
         
         // THEN: Keep the current level, but continue checking lower levels (sub-documents/arrays)
